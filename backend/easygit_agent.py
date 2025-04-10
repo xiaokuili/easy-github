@@ -321,55 +321,19 @@ class GitDiagramAgent:
 
 # Example usage
 if __name__ == "__main__":
+    from git_context import GitHubContext
+    context = GitHubContext()
+  
+    username = "ahmedkhaleel2004"
+    repo = "gitdiagram"
+    
+    readme = context.get_github_readme(username, repo)
+    file_tree = context.get_github_file_paths_as_list(username, repo)
     # Sample file tree and README for testing
-    sample_file_tree = """
-    /
-    ├── README.md
-    ├── package.json
-    ├── src/
-    │   ├── index.js
-    │   ├── components/
-    │   │   ├── App.js
-    │   │   ├── Header.js
-    │   │   └── Footer.js
-    │   ├── services/
-    │   │   ├── api.js
-    │   │   └── auth.js
-    │   └── utils/
-    │       └── helpers.js
-    ├── public/
-    │   ├── index.html
-    │   └── styles.css
-    └── server/
-        ├── index.js
-        ├── routes/
-        │   ├── users.js
-        │   └── posts.js
-        └── models/
-            ├── User.js
-            └── Post.js
-    """
-    
-    sample_readme = """
-    # Sample Project
-    
-    This is a simple full-stack web application with a React frontend and Node.js backend.
-    It provides user authentication and a simple blog posting functionality.
-    
-    ## Features
-    - User registration and login
-    - Create, read, update, and delete blog posts
-    - RESTful API for data access
-    
-    ## Tech Stack
-    - Frontend: React, CSS
-    - Backend: Node.js, Express
-    - Database: MongoDB
-    """
-    
+   
     # Initialize agent and run the process
     agent = GitDiagramAgent()
-    results = agent.full_process(sample_file_tree, sample_readme)
+    results = agent.full_process(file_tree, readme)
     
     # Print results
     print("EXPLANATION:")
